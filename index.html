@@ -914,7 +914,8 @@ dialog.book[open]{animation:sheet-in .5s var(--ease)}
   $(".js-nav-close").addEventListener("click",closeNav);
   $$(".nav-links a").forEach(function(a){ a.addEventListener("click",function(e){
     var t=document.querySelector(a.getAttribute("href")); e.preventDefault(); closeNav();
-    if(t){ t.scrollIntoView({behavior:reduce?"auto":"smooth"}); history.replaceState(null,"",a.getAttribute("href")); }
+    document.body.style.overflow="";
+    if(t){ requestAnimationFrame(function(){ t.scrollIntoView({behavior:reduce?"auto":"smooth"}); }); history.replaceState(null,"",a.getAttribute("href")); }
   });});
 
   /* ---------- booking ---------- */
